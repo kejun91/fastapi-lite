@@ -71,7 +71,6 @@ def add_uvicorn_like_access_log(app: FastAPI, logger_name: str = "fastapi_lite")
     @app.middleware("http")
     async def access_log(request: Request, call_next):
         start = time.perf_counter()
-        client = request.client.host if request.client else "-"
         method = request.method
         path = request.url.path
         if request.url.query:

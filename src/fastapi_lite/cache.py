@@ -13,7 +13,6 @@ from typing import Any, Dict, List, Optional
 from fastapi import APIRouter, Body
 from fastapi.concurrency import run_in_threadpool
 
-
 # ---------------------------------------------------------------------------
 # Core cache classes
 # ---------------------------------------------------------------------------

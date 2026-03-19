@@ -85,8 +85,13 @@ def create_router(prefix: str = DEFAULT_PREFIX) -> APIRouter:
         validated_aws_region = aws_region if aws_region is not None else None
 
         signin_token = await fetch_signin_token(aws_domain, b3s)
-        destination_url = f"https://{(validated_aws_region + '.') if validated_aws_region is not None else ''}console.{aws_domain}{sanitized_destination_path}"
-        signin_url = f"https://{sso_region}.signin.{aws_domain}/federation?Action=login&Destination={quote(destination_url, safe='')}&SigninToken={signin_token}"
+        region_prefix = f"{validated_aws_region}." if validated_aws_region is not None else ""
+        destination_url = f"https://{region_prefix}console.{aws_domain}{sanitized_destination_path}"
+        encoded_dest = quote(destination_url, safe="")
+        signin_url = (
+            f"https://{sso_region}.signin.{aws_domain}/federation"
+            f"?Action=login&Destination={encoded_dest}&SigninToken={signin_token}"
+        )
 
         url = (
             signin_url
