@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "fastapi-lite"
+version = "0.1.0"
+description = "Reusable FastAPI utilities: AWS helpers, SQLite cache, and uvicorn-style access logging"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+]
+
+[project.optional-dependencies]
+aws = [
+    "boto3",
+    "aws_sso_lite",
+    "httplite",
+]
+all = [
+    "boto3",
+    "aws_sso_lite",
+    "httplite",
+]
+test = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.21",
+    "httpx>=0.24",
+]
+
+[project.urls]
+Source = "https://github.com/kejun91/fastapi-lite"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fastapi_lite"]
+
+[tool.ruff]
+target-version = "py39"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+branch = "master"
+build_command = "python -m pip install build && python -m build"
