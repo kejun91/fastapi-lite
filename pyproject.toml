@@ -12,19 +12,12 @@ license = "MIT"
 dependencies = [
     "fastapi",
     "uvicorn",
+    "boto3",
+    "aws_sso_lite",
+    "httplite",
 ]
 
 [project.optional-dependencies]
-aws = [
-    "boto3",
-    "aws_sso_lite",
-    "httplite",
-]
-all = [
-    "boto3",
-    "aws_sso_lite",
-    "httplite",
-]
 test = [
     "pytest>=7.0",
     "pytest-asyncio>=0.21",

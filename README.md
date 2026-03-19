@@ -8,12 +8,6 @@ Reusable FastAPI utilities extracted for shared use: AWS helpers (boto3 session,
 pip install fastapi-lite
 ```
 
-With AWS support (boto3, aws_sso_lite, httplite):
-
-```bash
-pip install fastapi-lite[aws]
-```
-
 ## Modules
 
 ### `fastapi_lite.log` — Access logging
@@ -55,8 +49,6 @@ print(store.get_item("key"))
 ```
 
 ### `fastapi_lite.aws` — AWS helpers
-
-Requires the `aws` extra: `pip install fastapi-lite[aws]`
 
 ```python
 from fastapi_lite.aws import (
